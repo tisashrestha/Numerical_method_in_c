@@ -1,1 +1,25 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+#define f(x) sin(x)+3*x-2
+#define g(x) (2-sin(x))/3
 
+int main(){
+	float x0, x1, f0, g0, E = 0.0001;
+	int n, steps = 1;
+	printf("Enter the initial value of x and max iteration: ");
+	scanf("%f%d",&x0,&n);
+	do{
+		x1 = g(x0);
+		steps++;
+		if(steps>n){
+			printf("not convergent");
+			exit(1);
+		}
+		else{
+			x0 = x1;
+		}
+	}while(fabs(f(x1))>E);
+		printf("The root is %f and the steps is %d", x1, steps);
+		return 0;
+}
