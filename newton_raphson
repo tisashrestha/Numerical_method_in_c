@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include<math.h>
+#define f(x) x*tan(x)-1
+#define g(x) x*(1/pow(cos(x),2))+tan(x)
+
+
+int main(){
+	float x0, x1, f0, g0, E = 0.0001;
+	int steps = 1;
+	printf("Enter the initial values of x0 ");
+	scanf("%f",&x0);
+	do{
+		f0 = f(x0);
+		g0 = g(x0);
+		x1 = x0 - f0/g0;
+		x0 = x1;
+		steps ++;
+	}while(fabs(f(x1))>E);
+		printf("The root is %f and the steps is %d", x1, steps);
+		return 0;
+}
