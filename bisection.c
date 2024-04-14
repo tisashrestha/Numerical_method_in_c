@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<math.h>
+#define f(x) pow(x,2)-4*x-10
+
+int main(){
+	float x1, x2, x3, f1, f2, f3, E = 0.0001;
+	int steps=1;
+	up:
+		printf("Enter the initial values of x1 and x2: ");
+		scanf("%f%f",&x1,&x2);
+		f1=f(x1);
+		f2=f(x2);
+		
+		if((f1*f2)>0){
+			printf("Please provide another value");
+			goto up;
+		}
+		do{
+			x3 = (x1+x2)/2;
+			f3 = f(x3);
+			if((f1*f3)<0){
+				x2=x3;
+				f2=f3;
+			}
+			else{
+				x1=x3;
+				f1=f3;
+			}
+			steps++;
+		}while(fabs((x2-x1)/x2)>E);
+		printf("The root is %f and the steps is %d", x3, steps);
+		return 0;
+}
